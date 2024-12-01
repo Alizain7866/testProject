@@ -42,7 +42,7 @@ Vehicle::Vehicle(const std::string &texturePath, float speed, const sf::Vector2f
     pCarSprite.setOrigin(bounds.width / 2, bounds.height / 2);
 }
 
-Vehicle::Vehicle(int carNumber, const int player_count)
+Vehicle::Vehicle(int carNumber, const int player_num)
 {
     int spacing = 6;
     if (carNumber == 1)
@@ -95,14 +95,14 @@ Vehicle::Vehicle(int carNumber, const int player_count)
     {
         sf::Sprite heart(heartTexture);
         heart.setScale(0.5f, 0.5f); // Scale the heart image
-        if (player_count == 1)
+        if (player_num == 1)
         {
             heart.setPosition(10.0f + i * 90.0f, 5.0f * spacing); // Position hearts in a row
             hearts.push_back(heart);
         }
-        else if (player_count == 2)
+        else if (player_num == 2)
         {
-            heart.setPosition(1920 - (10.0f + i * 90.0f), 5.0f * spacing); // Position hearts in a row
+            heart.setPosition(1820 - (10.0f + i * 90.0f), 5.0f * spacing); // Position hearts in a row
             hearts.push_back(heart);
         }
     }

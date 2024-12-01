@@ -10,7 +10,7 @@
 class Vehicle
 {
 public:
-    Vehicle(int carNumber, const int player_count);
+    Vehicle(int carNumber, const int player_num);
     Vehicle(const std::string &texturePath, float speed, const sf::Vector2f &position);
 
     void draw(sf::RenderWindow &window); // Draws the car on the window

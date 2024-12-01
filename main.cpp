@@ -11,14 +11,18 @@ int main()
     // Road road("images/roading.png", 300.0f);
     Road road("images/Road2_Sprite1.png", 300.0f);
     static int player_count{2};
+    std::vector<Vehicle *> player_cars;
     if (player_count == 1)
     {
-        Vehicle p1Car(1, player_count);
+        Vehicle *car1_ptr = new Vehicle(1, 1);
+        player_cars.push_back(car1_ptr);
     }
     else if (player_count == 2)
     {
-        Vehicle p1Car(1, player_count);
-        Vehicle p2Car(2, player_count);
+        Vehicle *car1_ptr = new Vehicle(1, 1);
+        player_cars.push_back(car1_ptr);
+        Vehicle *car2_ptr = new Vehicle(2, 2);
+        player_cars.push_back(car2_ptr);
     }
 
     std::vector<std::string> carTextures = {"images/comp_car1.png", "images/comp_car2.png", "images/comp_car3.png", "images/comp_car4.png", "images/comp_car5.png"};
@@ -61,11 +65,25 @@ int main()
 
         spawner.draw(window); // Draw all vehicles
         road.draw(window);    // Draw road
-        p1Car.draw(window);   // Draw player 1 car
-        p2Car.draw(window);   // Draw player 2 car
+        if (player_count == 1)
+        {
+            player_cars[0]->draw(window); // Draw player 1 car
+        }
+        else if (player_count == 2)
+        {
+            player_cars[0]->draw(window); // Draw player 1 car
+            player_cars[1]->draw(window); // Draw player 2 car
+        }
 
-        p1Car.update1(window, deltaTime); // Update player 1 car
-        p2Car.update2(window, deltaTime); // Update player 2 car
+        if (player_count == 1)
+        {
+            player_cars[0]->update1(window, deltaTime); // Update player 1 car
+        }
+        else if (player_count == 2)
+        {
+            player_cars[0]->update1(window, deltaTime); // Update player 1 car
+            player_cars[1]->update2(window, deltaTime); // Update player 2 car
+        }
 
         window.display(); // Display updated frame
     }
