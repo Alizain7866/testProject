@@ -10,16 +10,19 @@
 class Vehicle
 {
 public:
-    Vehicle(int carNumber);
+    Vehicle(int carNumber, const int player_count);
+    Vehicle(const std::string &texturePath, float speed, const sf::Vector2f &position);
 
-    void draw(sf::RenderWindow &window);   // Draws the car on the window
-    void update(sf::RenderWindow &window); // Updates the car's position
-    void loseLife();                       // Decrease lives
-    int getLives() const;                  // Get remaining lives
+    void draw(sf::RenderWindow &window); // Draws the car on the window
+    void update(float deltaTime);
+    void update1(sf::RenderWindow &window, float deltaTime); // Updates the 1st player car's position
+    void update2(sf::RenderWindow &window, float deltaTime); // Updates the 2nd player car's position
+    void loseLife();                                         // Decrease lives
+    int getLives() const;                                    // Get remaining lives
+    sf::Vector2f getPosition() const;
 
     // newly updated
     void activatePowerUp(const PowerUp &powerUp);
-
     void spawnPowerUp(sf::RenderWindow &window);
     void updatePowerUps(sf::RenderWindow &window);
 
