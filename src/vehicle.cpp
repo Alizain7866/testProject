@@ -129,10 +129,10 @@ void Vehicle::update(sf::RenderWindow &window)
         pCarSprite.setPosition(position.x, 0); // Wrap to the top
         loseLife();                            // Lose a life for vertical wrapping
     }
-    else if (position.y < 0) // Wrap to the bottom
+    else if (position.y < pCarSprite.getGlobalBounds().height / 2)
     {
-        pCarSprite.setPosition(position.x, static_cast<float>(windowSize.y)); // Wrap to the bottom
-        loseLife();                                                           // Lose a life for vertical wrapping
+        // Prevent moving beyond the top edge
+        pCarSprite.setPosition(position.x, pCarSprite.getGlobalBounds().height / 2);
     }
 
     // Prevent the car from going beyond the bottom of the window
@@ -142,9 +142,10 @@ void Vehicle::update(sf::RenderWindow &window)
     }
 
     // Prevent the car from going above the top of the window
-    if (position.y < 0)
+    else if (position.y < pCarSprite.getGlobalBounds().height / 2)
     {
-        pCarSprite.setPosition(position.x, 0);
+        // Prevent moving beyond the top edge
+        pCarSprite.setPosition(position.x, pCarSprite.getGlobalBounds().height / 2);
     }
 }
 

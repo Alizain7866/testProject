@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <vector>
+#include "Powerups.hpp"
 
 class Vehicle
 {
@@ -15,9 +16,18 @@ public:
     void update(sf::RenderWindow &window); // Updates the car's position
     void loseLife();                       // Decrease lives
     int getLives() const;                  // Get remaining lives
+
+    // newly updated
+    void activatePowerUp(const PowerUp &powerUp);
+
+    void spawnPowerUp(sf::RenderWindow &window);
+    void updatePowerUps(sf::RenderWindow &window);
+
 protected:
     std::string tmp;
     std::string hrt;
+
+    std::vector<PowerUp> powerUps; // Store all power-ups
 
     std::string car1_load = "images/car_1.png";
     std::string car2_load = "images/car_2.png";
@@ -32,6 +42,12 @@ protected:
     std::vector<sf::Sprite> hearts;
 
     int lives = 3; // Default to 3 lives
+    void resetEffect(float duration, std::function<void()> resetFunction);
+
+    // PowerUp texture loading
+    std::map<PowerUpType, sf::Texture> powerUpTextures;
+
+    void loadPowerUpTextures();
 };
 
 #endif
