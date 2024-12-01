@@ -4,6 +4,8 @@
 #include "src/vehicle.cpp"
 #include "src/heart.cpp"
 #include "src/vehicle_spawner.cpp"
+#include "src/powerup.cpp"
+
 // #include "include/road.hpp"
 // #include "include/vehicle.hpp"
 // #include "include/Heart.hpp"

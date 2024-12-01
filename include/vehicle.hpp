@@ -45,7 +45,7 @@ protected:
     std::vector<sf::Sprite> hearts;
 
     int lives = 3; // Default to 3 lives
-    void resetEffect(float duration, std::function<void()> resetFunction);
+    // void resetEffect(float duration, std::function<void()> resetFunction);
 
     // PowerUp texture loading
     std::map<PowerUpType, sf::Texture> powerUpTextures;

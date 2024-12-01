@@ -271,3 +271,61 @@ sf::Vector2f Vehicle::getPosition() const
 {
     return pCarSprite.getPosition();
 }
+
+// updated by Alizain
+void Vehicle::loadPowerUpTextures()
+{
+    if (!powerUpTextures[PowerUpType::SpeedBoost].loadFromFile("images/powerup_1.jpg"))
+    {
+        std::cerr << "Failed to load speed boost texture!" << std::endl;
+    }
+    if (!powerUpTextures[PowerUpType::ExtraLife].loadFromFile("images/powerup_1.jpg"))
+    {
+        std::cerr << "Failed to load extra life texture!" << std::endl;
+    }
+    // Add more power-ups as needed
+}
+
+void Vehicle::spawnPowerUp(sf::RenderWindow &window)
+{
+    // Spawn logic for a power-up (e.g., random location)
+    PowerUp newPowerUp;
+    newPowerUp.setType(PowerUpType::SpeedBoost); // Example
+    newPowerUp.setPosition(sf::Vector2f(rand() % window.getSize().x, rand() % window.getSize().y));
+    powerUps.push_back(newPowerUp);
+}
+
+void Vehicle::updatePowerUps(sf::RenderWindow &window)
+{
+    for (auto &powerUp : powerUps)
+    {
+        powerUp.draw(window);
+        // if (pCarSprite.getGlobalBounds().intersects(powerUp.getBounds()))
+        {
+            activatePowerUp(powerUp);
+        }
+    }
+}
+
+void Vehicle::activatePowerUp(const PowerUp &powerUp)
+{
+    switch (powerUp.getType())
+    {
+    case PowerUpType::SpeedBoost:
+        mCarSpeed += 50.0f; // Temporary speed boost
+        // resetEffect(5.0f, [this]()
+        //             { mCarSpeed -= 50.0f; }); // Reset after 5 seconds
+        break;
+    case PowerUpType::ExtraLife:
+        if (lives < 3)
+        {
+            lives++;
+            sf::Sprite heart(heartTexture);
+            heart.setScale(0.5f, 0.5f);
+            hearts.push_back(heart);
+        }
+        break;
+    default:
+        break;
+    }
+}

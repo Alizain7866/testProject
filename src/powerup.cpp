@@ -28,3 +28,11 @@ bool PowerUp::checkCollision(const sf::Sprite &carSprite)
 {
     return mSprite.getGlobalBounds().intersects(carSprite.getGlobalBounds());
 }
+
+// latest update
+void PowerUp::setPosition(const sf::Vector2f &position)
+{
+    m_position = position; // Set the position to the provided vector
+    // If you're using a sprite to represent the power-up, you can set its position as well:
+    mSprite.setPosition(m_position); // Assuming you have a sprite for drawing the power-up
+}

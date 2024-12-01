@@ -27,8 +27,16 @@ public:
     bool checkCollision(const sf::Sprite &carSprite); // Check if the power-up collides with the car
 
     PowerUpType getType() const { return mType; }
+    void setType(PowerUpType type) { mType = type; } // Setter for mType
+    void setPosition(const sf::Vector2f &position);
+    // sf::Vector2f PowerUp::getPosition() const
+    // {
+    //     return mSprite.getPosition();
+    // }
 
     sf::Sprite mSprite;
     PowerUpType mType;
+    sf::Vector2f m_position; // Store position of the power-up
+
     float mSpeed = 0.5f; // Speed at which power-ups fall
 };
