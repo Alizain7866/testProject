@@ -31,10 +31,14 @@ Vehicle::Vehicle(const std::string &texturePath, float speed, const sf::Vector2f
     {
         std::cerr << "Error loading texture from file: " << texturePath << std::endl;
     }
+    else
+    {
+        std::cout << "Texture loaded successfully: " << texturePath << std::endl;
+    }
 
     pCarSprite.setTexture(pCarTexture);
 
-    pCarSprite.setScale(0.38f, 0.38f);
+    // pCarSprite.setScale(1.0f, 1.0f);
 
     pCarSprite.setPosition(position);
 
@@ -115,8 +119,7 @@ Vehicle::Vehicle(int carNumber, const int player_num)
 
 void Vehicle::update(float deltaTime)
 {
-    sf::Vector2f position = pCarSprite.getPosition();                       // Retrieve the current position
-    pCarSprite.setPosition(position.x, position.y + mCarSpeed * deltaTime); // Move downwards
+    pCarSprite.move(0, mCarSpeed * deltaTime); // Move down
 }
 
 void Vehicle::update1(sf::RenderWindow &window, float deltaTime)

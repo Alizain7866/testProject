@@ -4,6 +4,12 @@
 #include "src/vehicle.cpp"
 #include "src/heart.cpp"
 #include "src/vehicle_spawner.cpp"
+// #include "include/road.hpp"
+// #include "include/vehicle.hpp"
+// #include "include/Heart.hpp"
+// #include "include/vehicle_spawner.hpp"
+// #include "include/Powerups.hpp"
+// #include "include/GameManager.hpp"
 
 int main()
 {
@@ -59,12 +65,12 @@ int main()
 
         road.update(deltaTime);
         // spawner.spawnVehicle();    // Generate new vehicles
-        spawner.update(deltaTime); // Update all vehicles
 
         window.clear(); // Clear previous frame
 
-        spawner.draw(window); // Draw all vehicles
-        road.draw(window);    // Draw road
+        road.draw(window);         // Draw road
+        spawner.update(deltaTime); // Update all vehicles
+        spawner.draw(window);      // Draw all vehicles
         if (player_count == 1)
         {
             player_cars[0]->draw(window); // Draw player 1 car
